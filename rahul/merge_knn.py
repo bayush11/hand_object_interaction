@@ -112,11 +112,15 @@ def read_results():
     indices = results["indices"]
     dgnet_dict = json.load(open("training.json"))
     fhand_dict = json.load(open("data.json"))
-        
+    dgnet_keys = list(dgnet_dict)
+    print(indices[0][0])
+    print(dgnet_keys[1291023])
+    print(dgnet_dict[dgnet_keys[1291023]])
+
 if __name__ == "__main__":
-    # convert_mano_to_shadowhand()
-    # convert_dgnet_to_training()
-    # perform_knn()
+    convert_mano_to_shadowhand()
+    convert_dgnet_to_training()
+    perform_knn()
     read_results()
     pass
 

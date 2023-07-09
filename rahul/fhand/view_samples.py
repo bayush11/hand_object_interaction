@@ -19,7 +19,7 @@ def show_training_samples(base_path, version, num2show=None, render_mano=False):
     for idx in range(db_size('training')):
         if idx >= num2show:
             break
-
+        idx=3
         # load image and mask
         img = read_img(idx, base_path, 'training', version)
         msk = read_msk(idx, base_path)
@@ -28,8 +28,9 @@ def show_training_samples(base_path, version, num2show=None, render_mano=False):
         # annotation for this frame
         K, mano, xyz = db_data_anno[idx]
         K, mano, xyz = [np.array(x) for x in [K, mano, xyz]]
-        print(xyz[:, 1])
-        xyz[0][0] = 0.5
+        # mano[0][0]+= 1.57
+        # print(xyz[:, 1])
+        # xyz[0][0] = 0.5
         # print(mano[0])
         # mano[0] = [
         #         # 1.57, 1.57, 1.57, # first three are for wrist (global orientation)
@@ -53,10 +54,10 @@ def show_training_samples(base_path, version, num2show=None, render_mano=False):
         #         1.19728488e+02,  1.16920922e+02, 578] # global translation xy and scale
         # mano[0][60] = -9
         # print(mano[0].shape)
-        joints = mano[0][3:48].reshape(15,3)
-        joints = joints[:, 2]
-        for i in joints:
-            print(i, end=', ')
+        # joints = mano[0][3:48].reshape(15,3)
+        # joints = joints[:, 2]
+        # for i in joints:
+        #     print(i, end=', ')
         # shadowhand = np.linalg.norm(joints, axis=0)
         # print(shadowhand)
         # print(joints)
@@ -79,13 +80,13 @@ def show_training_samples(base_path, version, num2show=None, render_mano=False):
 
         # show
         fig = plt.figure()
-        # ax1 = fig.add_subplot(121)
-        ax2 = fig.add_subplot(121)
-        # ax1.imshow(img)
+        ax1 = fig.add_subplot(121)
+        ax2 = fig.add_subplot(122)
+        ax1.imshow(img)
         ax2.imshow(msk if msk_rendered is None else msk_rendered)
-        # plot_hand(ax1, uv, order='uv')
-        # plot_hand(ax2, uv, order='uv')
-        # ax1.axis('off')
+        plot_hand(ax1, uv, order='uv')
+        plot_hand(ax2, uv, order='uv')
+        ax1.axis('off')
         ax2.axis('off')
         plt.show()
         print("\n\n\n")

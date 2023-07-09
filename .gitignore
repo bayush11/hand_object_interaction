@@ -169,3 +169,5 @@ rahul/DexGraspNet
 rahul/FreiHAND
 rahul/fhand/mano_v1_2
 rahul/training.json
+rahul/dgnet/grasp_generation/knn_results_visuals/
+rahul/fhand/opendr
